@@ -7,18 +7,35 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-:root{
-  --bg:#0a1628; --bg2:#0f1e35; --card:#131f33; --card2:#1a2840;
-  --border:#1e3050; --border2:#243656; --text:#e6edf6; --text2:#9fb0c6; --text3:#647089;
-  --green:#22c55e; --green-bg:rgba(34,197,94,.13); --red:#ef4444; --red-bg:rgba(239,68,68,.13);
-  --amber:#f59e0b; --amber-bg:rgba(245,158,11,.13); --blue:#3b82f6; --blue-bg:rgba(59,130,246,.13);
-  --radius:12px; --radius-sm:8px; --shadow:0 4px 20px rgba(0,0,0,.35);
+/* ===== LIGHT THEME (default — study-friendly) ===== */
+:root,:root[data-theme="light"]{
+  --bg:#eef1f7; --bg-grad:linear-gradient(180deg,#f0f3f8,#e9edf5 70%,#eef1f7);
+  --bg2:#ffffff; --card:#ffffff; --card2:#eef2f8;
+  --border:#dce2ec; --border2:#c7d0de; --text:#1b2532; --text2:#4f5b6e; --text3:#7d8798;
+  --header-bg:rgba(255,255,255,.88);
+  --green:#15a04a; --green-bg:rgba(21,160,74,.12); --green-t:#137a3a;
+  --red:#dc2626; --red-bg:rgba(220,38,38,.10); --red-t:#b3201f;
+  --amber:#d97706; --amber-bg:rgba(217,119,6,.14); --amber-t:#a45508;
+  --blue:#2563eb; --blue-bg:rgba(37,99,235,.10); --blue-t:#1d4ed8;
+  --radius:12px; --radius-sm:8px; --shadow:0 2px 14px rgba(27,37,50,.10);
 }
-body{background:linear-gradient(180deg,#0a1628,#0b1a30 60%,#0a1526);color:var(--text);
+/* ===== DARK THEME (softer, higher-contrast) ===== */
+:root[data-theme="dark"]{
+  --bg:#0f1722; --bg-grad:linear-gradient(180deg,#0f1722,#111d2c 65%,#0f1824);
+  --bg2:#16212f; --card:#1a2635; --card2:#233141;
+  --border:#2a3849; --border2:#38495e; --text:#e9eff7; --text2:#a6b3c6; --text3:#6e7b8e;
+  --header-bg:rgba(17,28,42,.9);
+  --green:#22c55e; --green-bg:rgba(34,197,94,.16); --green-t:#5ce08a;
+  --red:#f26060; --red-bg:rgba(239,68,68,.16); --red-t:#fb8b8b;
+  --amber:#f59e0b; --amber-bg:rgba(245,158,11,.16); --amber-t:#fbc23c;
+  --blue:#4a8bff; --blue-bg:rgba(59,130,246,.18); --blue-t:#9cc4ff;
+  --radius:12px; --radius-sm:8px; --shadow:0 6px 24px rgba(0,0,0,.45);
+}
+body{background:var(--bg-grad);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.55}
 .wrap{max-width:940px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
 /* Header */
-header{position:sticky;top:0;z-index:50;background:rgba(13,25,45,.92);backdrop-filter:blur(8px);
+header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:blur(8px);
   border-bottom:1px solid var(--border)}
 .hd{display:flex;align-items:center;gap:12px;padding:12px 16px}
 .brand{font-weight:800;font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
@@ -80,19 +97,19 @@ main{flex:1;padding:16px}
 .subtop-actions{padding:2px 8px 4px}
 /* Quiz */
 .qtop{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-.tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--blue-bg);color:#93c5fd;border:1px solid rgba(59,130,246,.3)}
+.tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--blue-bg);color:var(--blue-t);border:1px solid var(--border2)}
 .qcount{color:var(--text2);font-size:12px}
 .qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
 .stem{font-size:16px;font-weight:600;line-height:1.5;margin-bottom:4px}
 .stemnum{color:var(--text3);font-weight:700;margin-right:6px}
 .opts{margin-top:14px;display:flex;flex-direction:column;gap:9px}
-.opt{border:1px solid var(--border2);border-radius:10px;padding:11px 12px;transition:.15s;background:var(--bg2)}
+.opt{border:1px solid var(--border);border-radius:10px;padding:11px 12px;transition:.15s;background:var(--card2)}
 .opt .row{display:flex;gap:12px;align-items:flex-start}
 .opt .ol{font-weight:700;color:var(--text2);min-width:16px}
 .opt .otext{flex:1}
 .tf{display:flex;gap:7px;margin-top:10px;padding-left:28px}
 .tf button{flex:0 0 auto;min-width:64px;padding:6px 12px;border-radius:7px;border:1px solid var(--border2);
-  background:var(--card2);color:var(--text2);font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;transition:.12s}
+  background:var(--bg2);color:var(--text2);font-weight:700;font-size:12px;cursor:pointer;font-family:inherit;transition:.12s}
 .tf button:hover{border-color:var(--text3);color:var(--text)}
 .tf button.selT{background:var(--blue);border-color:var(--blue);color:#fff}
 .tf button.selF{background:#64748b;border-color:#64748b;color:#fff}
@@ -100,7 +117,7 @@ main{flex:1;padding:16px}
 .opt.wrong{border-color:var(--red);background:var(--red-bg)}
 .verdict{margin-left:auto;font-weight:700;font-size:12px;display:none}
 .opt.right .verdict,.opt.wrong .verdict{display:inline}
-.opt.right .verdict{color:#4ade80}.opt.wrong .verdict{color:#f87171}
+.opt.right .verdict{color:var(--green-t)}.opt.wrong .verdict{color:var(--red-t)}
 .corrkey{display:none;margin-top:8px;padding-left:28px;font-size:12px;color:var(--text2)}
 .revealed .corrkey{display:block}
 .exp{display:none;margin-top:16px;border-top:1px solid var(--border);padding-top:14px}
@@ -123,6 +140,9 @@ main{flex:1;padding:16px}
 .iconbtn:hover{color:var(--text);border-color:var(--text3)}
 .iconbtn.on{color:var(--amber);border-color:var(--amber)}
 .scorechip{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:none}
+.scorechip.sc-full{background:var(--green-bg);color:var(--green-t)}
+.scorechip.sc-part{background:var(--amber-bg);color:var(--amber-t)}
+.scorechip.sc-none{background:var(--red-bg);color:var(--red-t)}
 .revealed .scorechip{display:inline-block}
 /* Results */
 .result{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center}
@@ -131,9 +151,9 @@ main{flex:1;padding:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;margin:18px 0}
 .cell{aspect-ratio:1;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;
   cursor:pointer;border:1px solid var(--border2);background:var(--card2);color:var(--text2)}
-.cell.correct{background:var(--green-bg);border-color:var(--green);color:#86efac}
-.cell.partial{background:var(--amber-bg);border-color:var(--amber);color:#fcd34d}
-.cell.wrong{background:var(--red-bg);border-color:var(--red);color:#fca5a5}
+.cell.correct{background:var(--green-bg);border-color:var(--green);color:var(--green-t)}
+.cell.partial{background:var(--amber-bg);border-color:var(--amber);color:var(--amber-t)}
+.cell.wrong{background:var(--red-bg);border-color:var(--red);color:var(--red-t)}
 .searchbox{width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--card);
   color:var(--text);font-size:14px;font-family:inherit;margin-bottom:14px}
 .searchbox::placeholder{color:var(--text3)}
@@ -150,6 +170,7 @@ footer{color:var(--text3);font-size:11px;text-align:center;padding:18px 12px 26p
       <div class="brand">🩺 FRCA MTF Quiz <small id="hdSub">1000 Primary &amp; Final MTF MCQs</small></div>
       <div class="spacer"></div>
       <span class="pill" id="hdPill">0 / 1000 attempted</span>
+      <button class="iconbtn" id="themeBtn" title="Toggle light / dark">🌙</button>
       <button class="iconbtn" id="homeBtn" title="Home">🏠</button>
     </div>
     <div class="progbar"><i id="topProg"></i></div>
@@ -180,6 +201,15 @@ function save(){ try{localStorage.setItem(LS,JSON.stringify(store))}catch(e){} }
 store.prog = store.prog||{};      // uid -> {best:0-5, done:true}
 store.marks = store.marks||{};    // uid -> true
 const uid = (subj,id)=> subj[0]+id;
+
+/* ---------- theme (default: light / study-friendly) ---------- */
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  store.theme=t; save();
+  const b=document.getElementById('themeBtn');
+  if(b){ b.textContent = t==='dark' ? '☀️' : '🌙'; b.title = t==='dark' ? 'Switch to light mode' : 'Switch to dark mode'; }
+}
+applyTheme(store.theme || 'light');
 function recordResult(subj,id,correctCount){
   const u=uid(subj,id); const p=store.prog[u]||{best:-1};
   if(correctCount>p.best){ store.prog[u]={best:correctCount,done:true}; }
@@ -355,7 +385,7 @@ function renderQuiz(){
   act.innerHTML=
     '<button class="iconbtn" id="prevB" '+(idx===0?'disabled':'')+'>← Prev</button>'+
     '<button class="iconbtn'+(marked?' on':'')+'" id="markB" title="Bookmark">'+(marked?'⭐':'☆')+'</button>'+
-    '<span class="scorechip" style="background:'+(sc===5?'var(--green-bg)':sc>0?'var(--amber-bg)':'var(--red-bg)')+';color:'+(sc===5?'#86efac':sc>0?'#fcd34d':'#fca5a5')+'">Score '+sc+'/5</span>'+
+    '<span class="scorechip '+(sc===5?'sc-full':sc>0?'sc-part':'sc-none')+'">Score '+sc+'/5</span>'+
     '<span class="spacer"></span>'+
     (revealed
       ? '<button class="btn btn-primary" id="nextB">'+(idx+1<list.length?'Next →':'Finish ✓')+'</button>'
@@ -429,6 +459,7 @@ document.addEventListener('click',e=>{
   if(img){const lb=el('div','lightbox','<img src="'+img.src+'">');lb.onclick=()=>lb.remove();document.body.appendChild(lb);}
 });
 document.getElementById('homeBtn').onclick=home;
+document.getElementById('themeBtn').onclick=()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
 document.getElementById('foot').innerHTML='Questions & explanations from <b>1000 Practice MTF MCQs for the Primary and Final FRCA</b>. '+
   'Progress is saved in your browser only. For study use — always verify against current guidelines.';
 home();
